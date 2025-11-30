@@ -15,7 +15,7 @@ except Exception as e: st.error(f"{e}"); st.stop()
 
 def get(k): return [x.split(f'{k}_')[1] for x in cols if x.startswith(k)]
 
-st.title("Coffee Price AI")
+st.title("NCAT CSE GROUP 1 WEB DEPLOYMENT")
 c1,c2,c3=st.columns(3)
 cf=c1.selectbox("Coffee", get('coffee_name'))
 wd=c2.selectbox("Day", get('Weekday'))
