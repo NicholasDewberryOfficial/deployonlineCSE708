@@ -26,8 +26,10 @@ except:
 
 # --- helper to extract options from model columns ---
 # this ensures the dropdowns only show options the model actually knows about
-def get_options(prefix):
-    return [col.split(f'{prefix}_')[1] for col in model_columns if col.startswith(prefix)]
+# --- helper to extract options from model columns ---
+# Change: We add 'columns_list' as a requirement for this function
+def get_options(prefix, columns_list):
+    return [col.split(f'{prefix}_')[1] for col in columns_list if col.startswith(prefix)]
 
 # --- user interface ---
 st.title("☕ Coffee Price Predictor")
@@ -37,15 +39,18 @@ st.write("Select the details below to estimate the price using our Neural Networ
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    coffee_options = get_options('coffee_name')
+    # Pass 'model_columns' into the function here
+    coffee_options = get_options('coffee_name', model_columns)
     coffee = st.selectbox("Coffee Type", coffee_options)
 
 with col2:
-    time_options = get_options('Time_of_Day')
+    # And here
+    time_options = get_options('Time_of_Day', model_columns)
     time_day = st.selectbox("Time of Day", time_options)
 
 with col3:
-    month_options = get_options('Month_name')
+    # And here
+    month_options = get_options('Month_name', model_columns)
     month = st.selectbox("Month", month_options)
 
 # --- prediction logic ---
