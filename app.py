@@ -10,7 +10,6 @@ def ld():
     c=json.load(open('model_columns.json'))
     return m,s,c
 
-# Change this part in app.py
 try: 
     m,s,cols=ld()
 except Exception as e: 
