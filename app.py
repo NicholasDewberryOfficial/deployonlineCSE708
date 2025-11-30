@@ -5,7 +5,7 @@ st.set_page_config(layout="centered")
 
 @st.cache_resource
 def ld():
-    m=tf.keras.models.load_model('coffee_price_model.h5')
+    m=tf.keras.models.load_model('coffee_price_model.h5', compile=False)
     s=pickle.load(open('scaler.pkl','rb'))
     c=json.load(open('model_columns.json'))
     return m,s,c
