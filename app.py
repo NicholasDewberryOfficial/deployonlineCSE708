@@ -10,8 +10,12 @@ def ld():
     c=json.load(open('model_columns.json'))
     return m,s,c
 
-try: m,s,cols=ld()
-except: st.stop()
+# Change this part in app.py
+try: 
+    m,s,cols=ld()
+except Exception as e: 
+    st.error(f"Error loading files: {e}")
+    st.stop()
 
 def get(k): return [x.split(f'{k}_')[1] for x in cols if x.startswith(k)]
 

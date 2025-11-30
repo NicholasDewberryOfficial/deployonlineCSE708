@@ -1,6 +1,6 @@
 streamlit
 pandas
-tensorflow
+tensorflow-cpu
 scikit-learn
 matplotlib
 seaborn
