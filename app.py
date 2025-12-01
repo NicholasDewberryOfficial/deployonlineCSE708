@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt, seaborn as sns
 
 st.set_page_config(layout="centered")
 
-@st.cache_resource
+# REMOVED CACHE TO PREVENT STUCK FILES DURING DEVELOPMENT
 def ld():
     m=tf.keras.models.load_model('coffee_price_model.h5', compile=False)
     s=pickle.load(open('scaler.pkl','rb'))
@@ -21,7 +21,8 @@ cf=c1.selectbox("Coffee", get('coffee_name'))
 wd=c2.selectbox("Day", get('Weekday'))
 mn=c3.selectbox("Month", get('Month_name'))
 
-if st.button("Predict"):
+# PREVENT CRASH IF OPTIONS ARE EMPTY
+if cf and wd and mn and st.button("Predict"):
     row=pd.DataFrame(columns=cols); row.loc[0]=0
     try:
         row[f'coffee_name_{cf}']=1
@@ -39,3 +40,5 @@ if st.button("Predict"):
         ax.axvline(p,color='red',ls='--')
         st.pyplot(fig)
     except: pass
+elif st.button("Predict"):
+    st.error("Please ensure all fields are selected.")
