@@ -5,7 +5,8 @@ from sklearn.preprocessing import StandardScaler as ss
 try: d=pd.read_csv('Coffe_sales.csv')
 except: exit()
 
-X=pd.get_dummies(d[['Time_of_Day','coffee_name','Month_name']])
+#X=pd.get_dummies(d[['Time_of_Day','coffee_name','Month_name']])
+X=pd.get_dummies(d[['Weekday','coffee_name','Month_name']])
 y=d['money']
 
 json.dump(X.columns.tolist(), open('model_columns.json','w'))

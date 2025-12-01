@@ -21,14 +21,14 @@ def get(k): return [x.split(f'{k}_')[1] for x in cols if x.startswith(k)]
 st.title("NCAT CSE GROUP 1 WEB DEPLOYMENT")
 c1,c2,c3=st.columns(3)
 cf=c1.selectbox("Coffee", get('coffee_name'))
-td=c2.selectbox("Time", get('Time_of_Day'))
+td=c2.selectbox("Weekday", get('Weekday'))
 mn=c3.selectbox("Month", get('Month_name'))
 
 if st.button("Predict"):
     row=pd.DataFrame(columns=cols); row.loc[0]=0
     try:
         row[f'coffee_name_{cf}']=1
-        row[f'Time_of_Day_{td}']=1
+        row[f'Weekday{td}']=1
         row[f'Month_name_{mn}']=1
     except: pass
     
